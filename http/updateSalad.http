@@ -1,0 +1,7 @@
+PUT http://localhost:5001/6661d60b7fd498e6a3c37fa2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "dietType": "light",
+  "expired": "2024-06-07"
+}
