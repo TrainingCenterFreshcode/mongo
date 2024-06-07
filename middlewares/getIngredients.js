@@ -4,17 +4,20 @@ module.exports.findIngredient = async(req, res, next) => {
   try {
     const { body: { ingredients } } = req;
 
-    const ingredientsArray = [];
-    
-    ingredients.forEach(async (currentIngredient) => {
+    const ingredientsObjectIdArray = [];
+
+    for(let i = 0; i < ingredients.length; i++) {
       const ingredientObject = await Ingredient.findOne({
-        name: currentIngredient
+        name: ingredients[i]
       });
 
-      ingredientsArray.push(ingredientObject['_id']);
-    });
+      ingredientsObjectIdArray.push(ingredientObject['_id']);
+    }
 
-    console.log(ingredientsArray);
+    console.log(ingredientsObjectIdArray);
+
+    req.ingredients = ingredientsObjectIdArray;
+    next();
   } catch (error) {
     next(error);
   }
